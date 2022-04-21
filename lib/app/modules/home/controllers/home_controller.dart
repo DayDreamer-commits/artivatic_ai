@@ -1,11 +1,13 @@
-import 'package:artivatic_ai/app/modules/home/providers/feed_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../providers/feed.dart';
+import '../../../data/providers/feed.dart';
+import '../../../data/providers/feed_provider.dart';
 
 class HomeController extends GetxController {
+  final isLoading = true.obs;
+
   final FeedProvider feedProvider = FeedProvider();
   final Rx<Feed?> feed = Rx(null);
 
@@ -31,6 +33,7 @@ class HomeController extends GetxController {
 
     if (feedFromApi != null) {
       feed.value = feedFromApi;
+      isLoading.value = false;
       refresh();
       return feedFromApi;
     }
