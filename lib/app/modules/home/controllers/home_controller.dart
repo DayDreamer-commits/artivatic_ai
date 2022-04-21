@@ -1,12 +1,16 @@
+import 'package:artivatic_ai/app/modules/home/providers/feed_provider.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  //TODO: Implement HomeController
+import '../providers/feed.dart';
 
-  final count = 0.obs;
+class HomeController extends GetxController {
+  final FeedProvider feedProvider = FeedProvider();
+  final Rx<Feed?> feed = null.obs;
+
   @override
   void onInit() {
     super.onInit();
+    initializeAsync();
   }
 
   @override
@@ -16,5 +20,9 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
+
+  initializeAsync() async {
+    feed.value = await feedProvider.getFeed();
+    refresh();
+  }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
+import 'feed_widget.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -11,15 +12,16 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
+        title: Obx(() => controller.feed.value == null
+            ? const Text("")
+            : Text(controller.feed.value!.title)),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'HomeView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: Obx(() {
+        return controller.feed.value == null
+            ? ErrorWidget("No Feed is Available")
+            : FeedWidget(feed: controller.feed.value!);
+      }),
     );
   }
 }
