@@ -12,6 +12,7 @@ dependencies:
   flutter: 
     sdk: flutter
   pull_to_refresh: ^2.0.0
+  cached_network_image: ^3.2.0
 
 dev_dependencies: 
   get_cli: ^1.7.1

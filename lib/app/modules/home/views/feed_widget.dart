@@ -1,4 +1,5 @@
 import 'package:artivatic_ai/app/modules/home/controllers/home_controller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -20,6 +21,22 @@ class FeedWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           final row = feed.rows[index];
           return ListTile(
+            leading: row.imageHref != null
+                ? SizedBox(
+                    height: 64,
+                    width: 64,
+                    child: CachedNetworkImage(
+                      imageUrl: row.imageHref!,
+                      errorWidget: (context, url, error) => const Icon(
+                        Icons.error,
+                        color: Colors.red,
+                      ),
+                      placeholder: (context, url) => const CircleAvatar(
+                        radius: 32,
+                      ),
+                    ),
+                  )
+                : const CircleAvatar(),
             title: Text(row.title ?? "Title not found"),
             subtitle: Text(row.description ?? "Description not found"),
           );
