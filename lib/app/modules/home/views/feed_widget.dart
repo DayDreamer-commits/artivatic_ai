@@ -30,13 +30,24 @@ class FeedWidget extends StatelessWidget {
                       errorWidget: (context, url, error) => const Icon(
                         Icons.error,
                         color: Colors.red,
+                        size: 48,
                       ),
-                      placeholder: (context, url) => const CircleAvatar(
-                        radius: 32,
+                      placeholder: (context, url) => Icon(
+                        Icons.error,
+                        color: Colors.red.shade100,
+                        size: 48,
                       ),
                     ),
                   )
-                : const CircleAvatar(),
+                : const SizedBox(
+                    height: 64,
+                    width: 64,
+                    child: Icon(
+                      Icons.error,
+                      color: Colors.red,
+                      size: 48,
+                    ),
+                  ),
             title: Text(row.title ?? "Title not found"),
             subtitle: Text(row.description ?? "Description not found"),
           );
