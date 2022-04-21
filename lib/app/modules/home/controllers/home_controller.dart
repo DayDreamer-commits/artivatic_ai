@@ -5,12 +5,12 @@ import '../providers/feed.dart';
 
 class HomeController extends GetxController {
   final FeedProvider feedProvider = FeedProvider();
-  final Rx<Feed?> feed = null.obs;
+  final Rx<Feed?> feed = Rx(null);
 
   @override
   void onInit() {
     super.onInit();
-    initializeAsync();
+    getFeedFromApi();
   }
 
   @override
@@ -21,8 +21,16 @@ class HomeController extends GetxController {
   @override
   void onClose() {}
 
-  initializeAsync() async {
-    feed.value = await feedProvider.getFeed();
-    refresh();
+  getFeedFromApi() async {
+    final feedFromApi = await feedProvider.getFeed();
+
+    if (feedFromApi != null) {
+      feed.value = feedFromApi;
+      refresh();
+    }
+  }
+
+  refreshFeed() async {
+    await getFeedFromApi();
   }
 }

@@ -8,6 +8,15 @@ class FeedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ListView.builder(
+      itemCount: feed.rows.length,
+      itemBuilder: (context, index) {
+        final row = feed.rows[index];
+        return ListTile(
+          title: Text(row.title ?? "Title not found"),
+          subtitle: Text(row.description ?? "Description not found"),
+        );
+      },
+    );
   }
 }
