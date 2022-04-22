@@ -33,6 +33,16 @@ class FeedView extends GetView<FeedController> {
               color: Colors.black12,
               size: 48,
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              controller.row.description ??
+                  "I think we forgot to describe the title.",
+              style: const TextStyle(
+                fontSize: 15,
+              ),
+            ),
           )
         ],
       ),
