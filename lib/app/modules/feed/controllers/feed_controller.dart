@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
 
-class FeedController extends GetxController {
-  //TODO: Implement FeedController
+import '../../../data/providers/row_data.dart';
 
-  final count = 0.obs;
+class FeedController extends GetxController {
+  final RowData row = Get.arguments;
+
   @override
   void onInit() {
     super.onInit();
@@ -16,5 +17,4 @@ class FeedController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

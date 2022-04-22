@@ -6,7 +6,7 @@ class CustomAppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.7,
       child: ListView(
         children: const [
@@ -68,6 +68,18 @@ class CustomAppDrawer extends StatelessWidget {
             child: ListTile(
               title: Text("json_serializable"),
               subtitle: Text("https://pub.dev/packages/json_serializable"),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text("flutter_launcher_icons"),
+              subtitle: Text("https://pub.dev/packages/flutter_launcher_icons"),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Text("flutter_native_splash"),
+              subtitle: Text("https://pub.dev/packages/flutter_native_splash"),
             ),
           ),
         ],

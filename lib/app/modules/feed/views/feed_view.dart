@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -5,18 +6,35 @@ import 'package:get/get.dart';
 import '../controllers/feed_controller.dart';
 
 class FeedView extends GetView<FeedController> {
+  const FeedView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('FeedView'),
+        backgroundColor:
+            controller.row.title == null ? Colors.red : Colors.blue,
+        title: Text(controller.row.title ?? "Title not found"),
         centerTitle: true,
       ),
-      body: Center(
-        child: Text(
-          'FeedView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          CachedNetworkImage(
+            imageUrl: controller.row.imageHref ?? "",
+            errorWidget: (context, url, error) => const Icon(
+              Icons.error,
+              color: Colors.red,
+              size: 48,
+            ),
+            placeholder: (context, url) => const Icon(
+              Icons.image,
+              color: Colors.black12,
+              size: 48,
+            ),
+          )
+        ],
       ),
     );
   }

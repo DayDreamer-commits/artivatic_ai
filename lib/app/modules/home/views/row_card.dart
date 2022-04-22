@@ -12,7 +12,7 @@ class RowCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.blue.shade50,
+      color: row.title != null ? Colors.blue.shade50 : Colors.red.shade50,
       child: ListTile(
         onTap: () => Get.toNamed(Routes.FEED, arguments: row),
         leading: SizedBox(
